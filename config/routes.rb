@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   root "main#index"
   get "about", to: "about#index", as: :about
   get "sign_up", to: "registrations#new"
-  get "sign_up", to: "registrations#create"
+  post "sign_up", to: "registrations#create"
 end
