@@ -11,15 +11,24 @@
       <li class="nav-item">
         <%= link_to "About", about_path, class: "nav-link" %>
       </li>
-      <li class="nav-item">
-        <%= link_to "Sign in", sign_in_path, class: "nav-link" %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "Sign up", sign_up_path, class: "nav-link" %>
-      </li>
-      <li class="nav-item">
-        <%= button_to "Log out", logout_path, class: "btn btn-link text-decoration-none nav-link", method: :delete %>
-      </li>
+    </ul>
+
+    <ul class="navbar-nav ms-auto">
+      <% if !Current.user %>
+        <li class="nav-item">
+          <%= link_to "Sign in", sign_in_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Sign up", sign_up_path, class: "nav-link" %>
+        </li>
+      <%else%>
+        <span class="navbar-text">
+          <%=Current.user.email%>
+        </span>
+        <li class="nav-item">
+          <%= button_to "Log out", logout_path, class: "btn btn-link text-decoration-none nav-link", method: :delete %>
+        </li>
+      <%end%>
     </ul>
   </div>
 </nav>
