@@ -1,5 +1,23 @@
 <h1>Sign up</h1>
+    <%=@errors.inspect%>
+    <% if local_variables.include?(:errors) %>
+        <%=errors%>
+    <% end %>
 <%= form_with model: @user, url: sign_up_path do |form| %>
+    <%
+=begin%>
+ <%=@user.errors.any? && @user.errors.full_messages.inspect%> 
+<%
+=end%>
+    <% if instance_variable_defined?("@errors") %>
+        <%=@errors.inspect%>
+        <div class="alert alert-danger">
+        <% @errors.each do |message| %>
+            <div><%= message %></div>
+        <% end %>
+        </div>
+    <% end %>
+
     <div class="mb-3">
         <%= form.label :email%>
         <%= form.text_field :email, class: "form-control"%>
