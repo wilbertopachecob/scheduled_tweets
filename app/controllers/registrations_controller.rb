@@ -1,7 +1,6 @@
 class RegistrationsController < ApplicationController
    def new
-      @user = User.new 
-      # @errors = ["Pepe"]
+      @user = User.new
    end 
 
    def create
@@ -10,16 +9,8 @@ class RegistrationsController < ApplicationController
          session[:user_id] = @user.id
          redirect_to root_path, notice: "Successfully created account"
       else
-         # flash[:alert] = "Something went wrong"
-         # logger.debug @user.errors.inspect
-         # logger.debug @user.errors.full_messages.inspect
-         @errors = @user.errors.full_messages
-         logger.debug @errors.inspect
-         render :new
-         # render :new, locals: { errors: "123"}
-         # render :template => "registrations/new", :locals => { :errors => "123"}
-         # render :template => "registrations/new"
-         # redirect_to root_path, notice: "Successfully created account"
+         flash[:alert] = "Something went wrong"         
+         render :new, status: 422
       end   
    end 
    
