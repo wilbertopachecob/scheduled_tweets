@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
         else
             # logger.debug user.errors.inspect
             flash[:alert] = "Invalid username or password"
-            render :new
+            render :new, status: 422
         end
     end
     def destroy
